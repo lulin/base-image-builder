@@ -40,7 +40,7 @@ Builds run in the **ACR builder service** (云端构建), one rule for this repo
 | Code source | this GitHub repository |
 | Dockerfile path | `Dockerfile` |
 | Context directory | repo root (no context files are used) |
-| Namespace/repo | `lulinw/deven` |
+| Namespace/repo | `***/deven` |
 | Tag rules | `latest`; `v{major}` etc. as preferred |
 | Build args | none required — defaults are correct |
 
@@ -58,13 +58,13 @@ docker build -t deven:latest .
 ## After building
 
 Rebuild dependents **in order**: `deven` → `pi-vanilla` → `pi-agent`. They pull
-`registry.cn-hangzhou.aliyuncs.com/lulinw/deven:latest` as their parent image;
+`registry.cn-hangzhou.aliyuncs.com/***/deven:latest` as their parent image;
 same-region builders may prefer the VPC endpoint `registry-vpc.cn-hangzhou...`.
 
 ## Pulling
 
 ```bash
-docker pull registry.cn-hangzhou.aliyuncs.com/lulinw/deven:latest
+docker pull registry.cn-hangzhou.aliyuncs.com/***/deven:latest
 docker run -it --rm -v "$PWD:/workspace" -w /workspace \
-  registry.cn-hangzhou.aliyuncs.com/lulinw/deven:latest bash
+  registry.cn-hangzhou.aliyuncs.com/***/deven:latest bash
 ```
